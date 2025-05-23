@@ -93,7 +93,7 @@ Dumble is a Puppeteer-based script that runs in a Node.js environment through th
 ## Usage
 
 **<pre>Usage:**
-        dumble [options]
+        node dumble [options]
 
 **Arguments:**
         --verbose    Verbose output, detailed logs
