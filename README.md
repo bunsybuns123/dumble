@@ -1,12 +1,60 @@
 # Dumble
 
-## Introduction
-Dumble is a Puppeteer-based script that runs in a Node.js environtment through the command line (CMD) for simulating advanced cheating in online exams. **Its Features:**
+## ❗ STATUS UPDATES IN DISCORD https://discord.gg/ynvqr3SaDV
 
-- Bypasses common proctoring checks (focus loss, fullscreen enforcement, window blur)
-- Simulates natural user interaction (mouse movement, typing)
-- Randomized input and viewport spoofing
-- Verbose debug mode for event logging
+## Introduction
+Dumble is a Puppeteer-based script that runs in a Node.js environtment through the command line (CMD) for simulating advanced cheating in online exams.
+
+## Features
+
+- **Stealth Mode via puppeteer-extra-plugin-stealth**
+
+
+  - Removes navigator.webdriver
+
+  - Mocks navigator.plugins and navigator.languages
+
+  - Overrides WebGLRenderingContext to spoof GPU info
+
+  - Modifies AudioContext to evade fingerprinting
+
+  - Replaces Function.prototype.toString to avoid detection
+
+- **Focus and Visibility Spoofing**
+
+  - Overrides document.hidden and document.visibilityState
+
+  - Forces document.hasFocus() to always return true
+
+  - Prevents blur/focus loss from triggering detection scripts
+
+  - Fullscreen Lock Circumvention
+
+  - Fakes document.fullscreenElement and related API calls
+
+  - Overrides requestFullscreen() and exitFullscreen() to silently resolve
+
+- **Viewport and Screen Spoofing**
+
+  - Forces window.innerWidth, window.innerHeight to match screen.width, screen.height
+
+  - Overrides screen.availWidth and availHeight for consistency
+
+- **Input Simulation**
+
+  - Detects text fields or textareas automatically
+
+  - Types simulated input with randomized delays
+
+  - Human-like mouse movement using randomized coordinates and steps
+
+- **Time Zone and Date Spoof/Fake**
+
+  - Overrides Date constructor to ensure consistency with real system offset
+
+- **Iframe Hardening**
+
+  - Overrides HTMLIFrameElement.prototype.contentWindow to prevent cross-frame detection
 
 
 ## Requirements
