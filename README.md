@@ -32,7 +32,7 @@ Dumble is a Puppeteer-based script that runs in a Node.js environtment through t
 
 **1. Clone the repository:**
 
-<pre> git clone https://github.com/omena1207/Dumble.git </pre>
+<pre> git clone https://github.com/bunsybuns123/dumble.git </pre>
 
 
 ``` cd dumble ```
