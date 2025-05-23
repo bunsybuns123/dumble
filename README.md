@@ -1,6 +1,6 @@
 # Dumble
 
-## ❗ STATUS UPDATES IN DISCORD https://discord.gg/ynvqr3SaDV
+## ❗ STATUS UPDATES AND MORE IN DISCORD https://discord.gg/ynvqr3SaDV
 
 ## Introduction
 Dumble is a Puppeteer-based script that runs in a Node.js environtment through the command line (CMD) for simulating advanced cheating in online exams.
