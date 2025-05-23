@@ -1,0 +1,18 @@
+{
+  "name": "dumble",
+  "version": "2.5.0",
+  "description": "Advanced Puppeteer-based exam cheat simulation tool",
+  "main": "dumble.js",
+  "scripts": {
+    "start": "node dumble.js",
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "keywords": ["puppeteer", "automation", "exam", "cheat-simulation", "stealth"],
+  "author": "bunsybuns123",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^24.9.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  }
+}
