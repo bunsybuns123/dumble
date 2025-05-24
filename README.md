@@ -48,11 +48,11 @@ Dumble is a Puppeteer-based script that runs in a Node.js environment through th
 
 ## Requirements
 
-- Node.js (v16 or later recommended)
+- [Node.js (v16 or later recommended)](https://nodejs.org/en/download)
 
 - npm (comes with Node.js)
 
-- Git (optional, for cloning the repo)
+- [Git (optional, for cloning the repo)](https://git-scm.com/downloads)
 
 
 ## Dependencies
