@@ -1,4 +1,4 @@
-# Dumble
+# Dumble (v2.5)
 
 # ❗ STATUS UPDATES AND MORE IN DISCORD https://discord.gg/NnpCKAV8Bh
 
