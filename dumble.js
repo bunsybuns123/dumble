@@ -26,128 +26,149 @@ By bunsybuns123 #2EASY #RASVATONMAITO
 🟡 Note: Please wait for tool to inject when website loads up.
 `);
 
-
 rl.question('Enter the exam website URL: ', async (url) => {
   rl.close();
 
-  const browser = await puppeteer.launch({
-    headless: false,
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-blink-features=AutomationControlled',
-      '--start-maximized',
-    ],
-    defaultViewport: null
-  });
+  if (!/^https?:\/\//.test(url)) {
+    console.error('❌ Invalid URL. Must start with http:// or https://');
+    process.exit(1);
+  }
 
-  const [page] = await browser.pages();
-
-  page.on('console', msg => {
-    const text = msg.text();
-    if (/⚠️|🟢|❌/.test(text)) console.log(`Dumble v2.4: ${text}`);
-    else log('Console:', text);
-  });
-
-  log('Injecting stealth bypass...');
-  await page.evaluateOnNewDocument(() => {
-    // Navigator overrides
-    Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
-    Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en'] });
-    Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3] });
-
-    // Permissions spoof
-    const originalQuery = navigator.permissions.query;
-    navigator.permissions.query = (params) =>
-      params.name === 'notifications'
-        ? Promise.resolve({ state: Notification.permission })
-        : originalQuery(params);
-
-    // Visibility spoof
-    Object.defineProperty(document, 'visibilityState', { get: () => 'visible' });
-    Object.defineProperty(document, 'hidden', { get: () => false });
-
-    // Focus spoof
-    document.hasFocus = () => true;
-    window.onblur = null;
-    window.onfocus = null;
-    window.addEventListener = new Proxy(window.addEventListener, {
-      apply: (target, thisArg, args) => {
-        if (args[0] === 'blur' || args[0] === 'visibilitychange') return;
-        return Reflect.apply(target, thisArg, args);
-      }
-    });
-
-    // WebGL
-    const getParam = WebGLRenderingContext.prototype.getParameter;
-    WebGLRenderingContext.prototype.getParameter = function (p) {
-      if (p === 37445) return 'Intel Inc.';
-      if (p === 37446) return 'Intel Iris OpenGL Engine';
-      return getParam.call(this, p);
-    };
-
-    // Canvas fingerprint
-    HTMLCanvasElement.prototype.toDataURL = () =>
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAA";
-
-    // Audio fingerprint spoof
-    const createAnalyser = AudioContext.prototype.createAnalyser;
-    AudioContext.prototype.createAnalyser = function () {
-      const analyser = createAnalyser.call(this);
-      analyser.getFloatFrequencyData = array => array.fill(-100);
-      return analyser;
-    };
-
-    // Iframe
-    Object.defineProperty(HTMLIFrameElement.prototype, 'contentWindow', {
-      get: function () { return window; }
-    });
-
-    // Stack trace
-    const oldToString = Function.prototype.toString;
-    Function.prototype.toString = function () {
-      return typeof this === 'function' && this.name === 'toString'
-        ? 'function toString() { [native code] }'
-        : oldToString.call(this);
-    };
-
-    // Timezone spoof
-    const offset = new Date().getTimezoneOffset();
-    const RealDate = Date;
-    window.Date = class extends RealDate {
-      constructor(...args) {
-        return args.length ? new RealDate(...args) : new RealDate(Date.now() + offset * 60 * 1000);
-      }
-    };
-
-    // Fullscreen spoof (retain fullscreen element)
-    Object.defineProperty(document, 'fullscreenElement', {
-      get: () => document.documentElement
-    });
-    Object.defineProperty(document, 'fullscreenEnabled', {
-      get: () => true
-    });
-    document.exitFullscreen = () => Promise.resolve();
-    document.documentElement.requestFullscreen = () => Promise.resolve();
-
-    // Screen/mouse/window lock
-    Object.defineProperty(window, 'innerWidth', { get: () => screen.width });
-    Object.defineProperty(window, 'innerHeight', { get: () => screen.height });
-    Object.defineProperty(screen, 'availWidth', { get: () => screen.width });
-    Object.defineProperty(screen, 'availHeight', { get: () => screen.height });
-
-    // Override mouseleave and blur events
-    document.addEventListener = new Proxy(document.addEventListener, {
-      apply: (target, thisArg, args) => {
-        if (['mouseleave', 'mouseout', 'blur'].includes(args[0])) return;
-        return Reflect.apply(target, thisArg, args);
-      }
-    });
-
-    console.log('🟢 Bypass completed successfully');
-  });
+  let browser;
 
   try {
+    browser = await puppeteer.launch({
+      headless: false,
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-blink-features=AutomationControlled',
+        '--start-maximized',
+      ],
+      defaultViewport: null
+    });
+
+    const [page] = await browser.pages();
+
+    process.on('SIGINT', async () => {
+      console.log('\n🟡 Exiting... Closing browser.');
+      await browser.close();
+      process.exit(0);
+    });
+
+    page.on('console', msg => {
+      const text = msg.text();
+      if (/⚠️|🟢|❌/.test(text)) console.log(`Dumble v2.5: ${text}`);
+      else log('Console:', text);
+    });
+
+    log('Injecting stealth bypass...');
+    await page.evaluateOnNewDocument(() => {
+      Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+      Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en'] });
+      Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3] });
+
+      const originalQuery = navigator.permissions.query;
+      navigator.permissions.query = (params) =>
+        params.name === 'notifications'
+          ? Promise.resolve({ state: Notification.permission })
+          : originalQuery(params);
+
+      Object.defineProperty(document, 'visibilityState', { get: () => 'visible' });
+      Object.defineProperty(document, 'hidden', { get: () => false });
+
+      document.hasFocus = () => true;
+      window.onblur = null;
+      window.onfocus = null;
+      window.addEventListener = new Proxy(window.addEventListener, {
+        apply: (target, thisArg, args) => {
+          if (args[0] === 'blur' || args[0] === 'visibilitychange') return;
+          return Reflect.apply(target, thisArg, args);
+        }
+      });
+
+      const getParam = WebGLRenderingContext.prototype.getParameter;
+      WebGLRenderingContext.prototype.getParameter = function (p) {
+        if (p === 37445) return 'Intel Inc.';
+        if (p === 37446) return 'Intel Iris OpenGL Engine';
+        return getParam.call(this, p);
+      };
+
+      HTMLCanvasElement.prototype.toDataURL = () =>
+        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAA";
+
+      const createAnalyser = AudioContext.prototype.createAnalyser;
+      AudioContext.prototype.createAnalyser = function () {
+        const analyser = createAnalyser.call(this);
+        analyser.getFloatFrequencyData = array => array.fill(-100);
+        return analyser;
+      };
+
+      Object.defineProperty(HTMLIFrameElement.prototype, 'contentWindow', {
+        get: function () { return window; }
+      });
+
+      const oldToString = Function.prototype.toString;
+      Function.prototype.toString = function () {
+        return typeof this === 'function' && this.name === 'toString'
+          ? 'function toString() { [native code] }'
+          : oldToString.call(this);
+      };
+
+      const offset = new Date().getTimezoneOffset();
+      const RealDate = Date;
+      window.Date = class extends RealDate {
+        constructor(...args) {
+          return args.length ? new RealDate(...args) : new RealDate(Date.now() + offset * 60 * 1000);
+        }
+      };
+
+      Object.defineProperty(document, 'fullscreenElement', {
+        get: () => document.documentElement
+      });
+      Object.defineProperty(document, 'fullscreenEnabled', {
+        get: () => true
+      });
+      document.exitFullscreen = () => Promise.resolve();
+      document.documentElement.requestFullscreen = () => Promise.resolve();
+
+      Object.defineProperty(window, 'innerWidth', { get: () => screen.width });
+      Object.defineProperty(window, 'innerHeight', { get: () => screen.height });
+      Object.defineProperty(screen, 'availWidth', { get: () => screen.width });
+      Object.defineProperty(screen, 'availHeight', { get: () => screen.height });
+
+      document.addEventListener = new Proxy(document.addEventListener, {
+        apply: (target, thisArg, args) => {
+          if (['mouseleave', 'mouseout', 'blur'].includes(args[0])) return;
+          return Reflect.apply(target, thisArg, args);
+        }
+      });
+
+      // F11 toggle via Right Control
+      let rightCtrlPressed = false;
+      window.addEventListener('keydown', async (e) => {
+        if (e.code === 'ControlRight' && !rightCtrlPressed) {
+          rightCtrlPressed = true;
+          try {
+            if (!document.fullscreenElement) {
+              await document.documentElement.requestFullscreen();
+            } else {
+              await document.exitFullscreen();
+            }
+          } catch (err) {
+            console.warn('⚠️ Fullscreen toggle error:', err.message);
+          }
+        }
+      });
+      window.addEventListener('keyup', (e) => {
+        if (e.code === 'ControlRight') {
+          rightCtrlPressed = false;
+        }
+      });
+
+      console.log('🟢 Bypass completed successfully');
+    });
+
     console.log(`Navigating to ${url}...`);
     await page.goto(url, { waitUntil: 'networkidle2' });
 
@@ -172,6 +193,8 @@ rl.question('Enter the exam website URL: ', async (url) => {
 
     console.log('Dumble v2.5 | 🟢 Tool Successfully Injected, Ctrl + C to Quit');
   } catch (err) {
-    console.error('Dumble v2.5 | ❌ Tool Injecting Failed:', err.message || err);
+    console.error('❌ Fatal Error:', err.message || err);
+    if (browser) await browser.close();
+    process.exit(1);
   }
 });
