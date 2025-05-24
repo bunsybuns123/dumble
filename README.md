@@ -7,6 +7,8 @@ Dumble is a Puppeteer-based script that runs in a Node.js environment through th
 
 ## Features
 
+- **Built-in ChatGPT**
+
 - **Stealth Mode via puppeteer-extra-plugin-stealth**
 
 
@@ -86,19 +88,10 @@ Dumble is a Puppeteer-based script that runs in a Node.js environment through th
 
 ## Examples
 
+- **UI Preview:**
 
-- **Without Dumble (Instantly detected and flagged to the teacher)**
+![image](https://github.com/user-attachments/assets/be089826-696d-421e-a509-561ebc8fced2)
 
-![dumble_example2](https://github.com/user-attachments/assets/11285586-72f7-4a7c-9517-76093474784a)
-
-
-- **With Dumble (Completely Undetected and looks like student is typing)**
-
-![dumble_example](https://github.com/user-attachments/assets/ecd12534-5ebd-46af-b311-0a269c544015)
-
-- **UI Preview**
-
-![image](https://github.com/user-attachments/assets/2b08c81d-10ab-4de9-800b-61c5654840b1)
 
 
 
