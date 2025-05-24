@@ -33,7 +33,7 @@ Dumble is a Puppeteer-based script that runs in a Node.js environment through th
 
   - Human-like mouse movement using randomized coordinates and steps
 
-- **Time Zone and Date Spoof/Fake**
+- **Time Zone and Date Spoofer**
 
   - Overrides Date constructor to ensure consistency with real system offset
 
