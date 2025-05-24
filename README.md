@@ -65,7 +65,7 @@ Dumble is a Puppeteer-based script that runs in a Node.js environment through th
 
 - readline (built-in Node.js module)
 
-## Installation
+## Installation (cmd)
 
 **1. Clone the repository:**
 
