@@ -23,7 +23,7 @@ Dumble is a Puppeteer-based script that runs in a Node.js environment through th
 
   - Forces window.innerWidth, window.innerHeight to match screen.width, screen.height
 
-  - Overrides screen.availWidth and availHeight for consistency
+  - screen.availWidth and availHeight override for consistency
 
 - **Input Simulation**
 
