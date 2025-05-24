@@ -84,6 +84,19 @@ Dumble is a Puppeteer-based script that runs in a Node.js environment through th
         --verbose    Verbose output, detailed logs
 </pre>
 
+## Examples
+
+- **Without Dumble (Instanly detected and flagged to the teacher)**
+
+![dumble_example2](https://github.com/user-attachments/assets/11285586-72f7-4a7c-9517-76093474784a)
+
+
+- **With Dumble (Completely Undetected and looks like student is typing)**
+
+![dumble_example](https://github.com/user-attachments/assets/ecd12534-5ebd-46af-b311-0a269c544015)
+
+
+
 ## ⚠️ Disclaimer
 
 This tool is for **educational and testing purposes only. Do not** use it to bypass real exam systems or engage in academic dishonesty. **The author is not responsible for any misuse of this software.**
