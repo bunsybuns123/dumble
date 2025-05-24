@@ -22,7 +22,7 @@ console.log(`
                                                           
                                                           
 By bunsybuns123 #2EASY #RASVATONMAITO
-🟢 Tool status: Undetected (Exam.net, Socrative.com)
+🟢 Tool status: Undetected
 🟡 Note: Please wait for tool to inject when website loads up.
 `);
 
