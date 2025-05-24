@@ -87,7 +87,7 @@ Dumble is a Puppeteer-based script that runs in a Node.js environment through th
 ## Examples
 
 
-- **Without Dumble (Instanly detected and flagged to the teacher)**
+- **Without Dumble (Instantly detected and flagged to the teacher)**
 
 ![dumble_example2](https://github.com/user-attachments/assets/11285586-72f7-4a7c-9517-76093474784a)
 
