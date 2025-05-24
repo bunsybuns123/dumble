@@ -10,29 +10,14 @@ Dumble is a Puppeteer-based script that runs in a Node.js environment through th
 - **Stealth Mode via puppeteer-extra-plugin-stealth**
 
 
-  - Removes navigator.webdriver
+  - Makes the script undetected
 
-  - Mocks navigator.plugins and navigator.languages
-
-  - Overrides WebGLRenderingContext to spoof GPU info
-
-  - Modifies AudioContext to evade fingerprinting
-
-  - Replaces Function.prototype.toString to avoid detection
 
 - **Focus and Visibility Spoofing**
 
-  - Overrides document.hidden and document.visibilityState
+  - Fake fullscreen
 
-  - Forces document.hasFocus() to always return true
-
-  - Prevents blur/focus loss from triggering detection scripts
-
-  - Fullscreen Lock Circumvention
-
-  - Fakes document.fullscreenElement and related API calls
-
-  - Overrides requestFullscreen() and exitFullscreen() to silently resolve
+  - Window Blur/Focus loss spoofer
 
 - **Viewport and Screen Spoofing**
 
@@ -54,7 +39,7 @@ Dumble is a Puppeteer-based script that runs in a Node.js environment through th
 
 - **Iframe Hardening**
 
-  - Overrides HTMLIFrameElement.prototype.contentWindow to prevent cross-frame detection
+  - Crossframe detection spoofer
 
 
 ## Requirements
