@@ -1,8 +1,6 @@
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const readline = require('readline');
-const fs = require('fs');
-const path = require('path');
 
 const VERBOSE = process.argv.includes('--verbose');
 const log = (...args) => VERBOSE && console.log('[verbose]', ...args);
@@ -61,18 +59,9 @@ By bunsybuns123 #2EASY #RASVATONMAITO
 rl.question('Enter the exam website URL: ', async (url) => {
   rl.close();
 
-  const chromePaths = {
-    win32: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
-    darwin: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    linux: '/usr/bin/google-chrome'
-  };
-  const platform = process.platform;
-  const executablePath = fs.existsSync(chromePaths[platform]) ? chromePaths[platform] : undefined;
-
   startSpinner('Launching browser');
   const browser = await puppeteer.launch({
     headless: false,
-    executablePath,
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
@@ -179,9 +168,11 @@ rl.question('Enter the exam website URL: ', async (url) => {
   async function injectChatGPT() {
     await page.evaluate(() => {
       if (window._chatgptPopup && !window._chatgptPopup.closed) {
-        // do nothing
-      } else {
-        window._chatgptPopup = null;
+        try {
+          window._chatgptPopup.focus();
+        } catch {
+          window._chatgptPopup = null;
+        }
       }
 
       function injectButton() {
@@ -221,15 +212,8 @@ rl.question('Enter the exam website URL: ', async (url) => {
 
         btn.addEventListener('click', () => {
           const url = 'https://chat.openai.com/';
-          if (window._chatgptPopup && !window._chatgptPopup.closed) {
-            try {
-              window._chatgptPopup.focus();
-            } catch {
-              window._chatgptPopup = window.open(url, 'chatgpt_window', 'width=800,height=600,resizable,scrollbars');
-            }
-          } else {
-            window._chatgptPopup = window.open(url, 'chatgpt_window', 'width=800,height=600,resizable,scrollbars');
-          }
+          const features = 'popup=yes,width=800,height=600,scrollbars=yes,resizable=yes';
+          window._chatgptPopup = window.open(url, 'chatgpt_window', features);
         });
       }
 
@@ -249,7 +233,7 @@ rl.question('Enter the exam website URL: ', async (url) => {
   try {
     startSpinner(`Navigating to ${url}`);
     await page.goto(url, { waitUntil: 'networkidle2' });
-    stopSpinner(`Page loaded`);
+    stopSpinner('Page loaded');
 
     await injectChatGPT();
     await simulateProgress('Simulating mouse', 1000);
