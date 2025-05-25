@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const readline = require('readline');
+const { spawn } = require('child_process');
 
 const VERBOSE = process.argv.includes('--verbose');
 const log = (...args) => VERBOSE && console.log('[verbose]', ...args);
@@ -50,7 +51,7 @@ console.log(`
  | |  | | | | | '_ \` _ \\| '_ \\| |/ _ \\ \\ \\ / // /  |___ \\ 
  | |__| | |_| | | | | | | |_) | |  __/  \\ V // /_ _ ___) |
  |_____/ \\__,_|_| |_| |_|_.__/|_|\\___|   \\_/|____(_)____/ 
-                                                          
+
 By bunsybuns123 #2EASY #RASVATONMAITO
 🟢 Tool status: Undetected
 🟡 Note: Please wait for tool to inject when website loads up.
@@ -166,13 +167,25 @@ rl.question('Enter the exam website URL: ', async (url) => {
   stopSpinner('Stealth injected');
 
   async function injectChatGPT() {
-    await page.evaluate(() => {
-      if (window._chatgptPopup && !window._chatgptPopup.closed) {
-        return;
-      } else {
-        window._chatgptPopup = null;
-      }
+    await page.exposeFunction('launchChatGPTInstance', () => {
+      const cmd = process.platform === 'darwin' ? 'open' : 'xdg-open';
+      const chromePath = process.platform === 'darwin'
+        ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+        : 'google-chrome';
 
+      const args = [
+        '--new-window',
+        '--app=https://chat.openai.com',
+        '--window-size=800,600'
+      ];
+
+      spawn(chromePath, args, {
+        detached: true,
+        stdio: 'ignore'
+      }).unref();
+    });
+
+    await page.evaluate(() => {
       function injectButton() {
         if (!document.body || document.getElementById('chatgpt-toggle-btn')) return;
 
@@ -201,18 +214,10 @@ rl.question('Enter the exam website URL: ', async (url) => {
         const btn = document.createElement('button');
         btn.id = 'chatgpt-toggle-btn';
         btn.title = 'ChatGPT Toggle';
-        document.body.appendChild(btn);
-
         btn.addEventListener('click', () => {
-          const url = 'https://chat.openai.com/';
-          const features = 'popup=yes,width=800,height=600,resizable=yes,scrollbars=yes';
-          const win = window.open('', '_blank', features);
-          if (win) {
-            win.document.write('<!DOCTYPE html><html><head><title>ChatGPT</title></head><body style="margin:0;padding:0;overflow:hidden;"><iframe src="' + url + '" style="width:100%;height:100%;border:none;"></iframe></body></html>');
-            win.document.close();
-            window._chatgptPopup = win;
-          }
+          window.launchChatGPTInstance();
         });
+        document.body.appendChild(btn);
       }
 
       if (document.readyState === 'complete' || document.readyState === 'interactive') {
