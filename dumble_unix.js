@@ -29,7 +29,7 @@ function startSpinner(text) {
 
 function stopSpinner(successText = 'Done') {
   clearInterval(spinnerInterval);
-  process.stdout.write(`\r✅ ${successText}          \n`);
+  process.stdout.write(`\r✅ ${successText}\n`);
 }
 
 async function simulateProgress(text, duration = 1500) {
@@ -66,7 +66,7 @@ rl.question('Enter the exam website URL: ', async (url) => {
       '--no-sandbox',
       '--disable-setuid-sandbox',
       '--disable-blink-features=AutomationControlled',
-      '--start-maximized',
+      '--start-fullscreen'
     ],
     defaultViewport: null
   });
@@ -168,42 +168,35 @@ rl.question('Enter the exam website URL: ', async (url) => {
   async function injectChatGPT() {
     await page.evaluate(() => {
       if (window._chatgptPopup && !window._chatgptPopup.closed) {
-        try {
-          window._chatgptPopup.focus();
-        } catch {
-          window._chatgptPopup = null;
-        }
+        return;
+      } else {
+        window._chatgptPopup = null;
       }
 
       function injectButton() {
-        if (!document.body) return;
-        if (document.getElementById('chatgpt-toggle-btn')) return;
+        if (!document.body || document.getElementById('chatgpt-toggle-btn')) return;
 
-        const styleId = 'chatgpt-toggle-style';
-        if (!document.getElementById(styleId)) {
-          const style = document.createElement('style');
-          style.id = styleId;
-          style.textContent = `
-            #chatgpt-toggle-btn {
-              position: fixed;
-              bottom: 15px;
-              right: 15px;
-              z-index: 999999;
-              width: 20px;
-              height: 20px;
-              background: rgba(16, 163, 127, 0.4);
-              border-radius: 50%;
-              border: 1px solid rgba(16, 163, 127, 0.7);
-              cursor: pointer;
-              user-select: none;
-              transition: background 0.3s ease;
-            }
-            #chatgpt-toggle-btn:hover {
-              background: rgba(16, 163, 127, 0.8);
-            }
-          `;
-          document.head.appendChild(style);
-        }
+        const style = document.createElement('style');
+        style.textContent = `
+          #chatgpt-toggle-btn {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            z-index: 999999;
+            width: 20px;
+            height: 20px;
+            background: rgba(16, 163, 127, 0.4);
+            border-radius: 50%;
+            border: 1px solid rgba(16, 163, 127, 0.7);
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.3s ease;
+          }
+          #chatgpt-toggle-btn:hover {
+            background: rgba(16, 163, 127, 0.8);
+          }
+        `;
+        document.head.appendChild(style);
 
         const btn = document.createElement('button');
         btn.id = 'chatgpt-toggle-btn';
@@ -212,8 +205,13 @@ rl.question('Enter the exam website URL: ', async (url) => {
 
         btn.addEventListener('click', () => {
           const url = 'https://chat.openai.com/';
-          const features = 'popup=yes,width=800,height=600,scrollbars=yes,resizable=yes';
-          window._chatgptPopup = window.open(url, 'chatgpt_window', features);
+          const features = 'popup=yes,width=800,height=600,resizable=yes,scrollbars=yes';
+          const win = window.open('', '_blank', features);
+          if (win) {
+            win.document.write('<!DOCTYPE html><html><head><title>ChatGPT</title></head><body style="margin:0;padding:0;overflow:hidden;"><iframe src="' + url + '" style="width:100%;height:100%;border:none;"></iframe></body></html>');
+            win.document.close();
+            window._chatgptPopup = win;
+          }
         });
       }
 
