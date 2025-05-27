@@ -1,7 +1,5 @@
 # Dumble (v2.5)
 
-# ❗ STATUS UPDATES AND MORE IN DISCORD https://discord.gg/NnpCKAV8Bh
-
 ## Introduction
 Dumble is a Puppeteer-based script that runs in a Node.js environment through the command line (CMD) for simulating advanced cheating in online exams. (exam.net, etc)
 
@@ -78,7 +76,7 @@ Dumble is a Puppeteer-based script that runs in a Node.js environment through th
 
 <pre> npm install puppeteer puppeteer-extra puppeteer-extra-plugin-stealth </pre>
 
-## Installation (macOS)
+## Installation, macOS (Beta, not fully functional)
 
 **1. Install Homebrew (If you don't have it):**
 
