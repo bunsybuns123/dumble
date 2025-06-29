@@ -53,7 +53,6 @@ console.log(`
  |_____/ \\__,_|_| |_| |_|_.__/|_|\\___|   \\_/|____(_)____/ 
                                                           
 By bunsybuns123 #2EASY #RASVATONMAITO
-🟢 Tool status: Undetected
 🟡 Note: Please wait for tool to inject when website loads up.
 `);
 
