@@ -76,32 +76,12 @@ Dumble is a Puppeteer-based script that runs in a Node.js environment through th
 
 <pre> npm install puppeteer puppeteer-extra puppeteer-extra-plugin-stealth </pre>
 
-## Installation, macOS (Beta, not fully functional)
-
-**1. Install Homebrew (If you don't have it):**
-
-<pre> /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </pre>
-
-**2. Install Node.js + Git:**
-
-<pre> brew install node git </pre>
-
-**3. Clone the repo:**
-
-<pre> git clone https://github.com/bunsybuns123/dumble.git </pre> 
-
-```cd dumble```
-
-**4. Install dependencies:**
-
-<pre> npm install puppeteer-extra puppeteer-extra-plugin-stealth </pre>
 
 ## Usage
 
 **<pre>Usage:**
 node dumble [args]
 
-<ins>**for MacOS:**</ins> node dumble_unix [args]
 
 **Arguments:**
         --verbose    Verbose output, detailed logs
