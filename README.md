@@ -9,12 +9,6 @@ Dumble is a Puppeteer-based script that runs in a Node.js environment through th
 
     - Access on-site via green button on bottom right
 
-- **Stealth Mode via puppeteer-extra-plugin-stealth**
-
-
-  - Makes the script undetected
-
-
 - **Focus and Visibility Spoofing**
 
   - Fake fullscreen
@@ -23,25 +17,17 @@ Dumble is a Puppeteer-based script that runs in a Node.js environment through th
 
 - **Viewport and Screen Spoofing**
 
-  - Forces window.innerWidth, window.innerHeight to match screen.width, screen.height
-
-  - screen.availWidth and availHeight override for consistency
+  - Teacher only sees exam website on your screen
 
 - **Input Simulation**
 
   - Detects text fields or textareas automatically
 
-  - Types simulated input with randomized delays
-
-  - Human-like mouse movement using randomized coordinates and steps
-
-- **Time Zone and Date Spoofer**
-
-  - Overrides Date constructor to ensure consistency with real system offset
+  - Types and moves mouse randomly to avoid being flagged AFK or suspicious
 
 - **Iframe Hardening**
 
-  - Crossframe detection spoofer
+  - Spoofs exam website frame tracking
 
 
 ## Requirements
