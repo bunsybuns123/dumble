@@ -5,29 +5,17 @@ Dumble is a Puppeteer-based script that runs in a Node.js environment through CM
 
 ## Features
 
-- **Built-in ChatGPT**
+- Built-in ChatGPT (Access on-site via green button on bottom right)
 
-    - Access on-site via green button on bottom right
+- Fake fullscreen
 
-- **Focus and Visibility Spoofing**
+- Window Blur/Focus loss spoofer
+ 
+- Teacher only sees exam website on your screen (If some kind of screeenshare is required)
+ 
+- Spoofs exam website frame tracking
 
-  - Fake fullscreen
-
-  - Window Blur/Focus loss spoofer
-
-- **Viewport and Screen Spoofing**
-
-  - Teacher only sees exam website on your screen
-
-- **Input Simulation**
-
-  - Detects text fields or textareas automatically
-
-  - Types and moves mouse randomly to avoid being flagged AFK or suspicious
-
-- **Iframe Hardening**
-
-  - Spoofs exam website frame tracking
+- Types and moves mouse randomly to avoid being flagged AFK or suspicious
 
 
 ## Requirements
