@@ -56,7 +56,7 @@ Dumble is a Puppeteer-based script that runs in a Node.js environment through CM
 <pre> git clone https://github.com/bunsybuns123/dumble.git </pre>
 
 
-``` cd dumble ```
+<pre> cd dumble </pre>
 
 **2. Install the required packages:**
 
