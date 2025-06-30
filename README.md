@@ -85,5 +85,5 @@ node dumble [args]
 
 ## ⚠️ Disclaimer
 
-This tool is for **educational and testing purposes only. Do not** use it to bypass real exam systems or engage in academic dishonesty. **The author is not responsible for any misuse of this software.**
+This tool is for **educational and testing purposes only. Do not** use it to bypass real exam systems or engage in academic dishonesty. **bunsybuns123 is not responsible for any misuse of this software.**
 
