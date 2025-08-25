@@ -52,7 +52,7 @@ console.log(`
  | |__| | |_| | | | | | | |_) | |  __/  \\ V // /_ _ ___) |
  |_____/ \\__,_|_| |_| |_|_.__/|_|\\___|   \\_/|____(_)____/ 
                                                           
-🟡 Note: Please wait for tool to inject when website loads up.
+Note: Please wait for tool to inject when website loads up.
 `);
 
 rl.question('Enter the exam website URL: ', async (url) => {
@@ -241,7 +241,7 @@ rl.question('Enter the exam website URL: ', async (url) => {
         stopSpinner('page loaded');
 
         await injectChatGPT();
-        await simulateProgress('simulating mouse', 1000);
+        await simulateProgress('✅ simulating mouse', 1000);
 
         const viewport = page.viewport() || { width: 800, height: 600 };
         const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -266,5 +266,6 @@ rl.question('Enter the exam website URL: ', async (url) => {
         console.error('Dumble v2.5 | error during injection:', err);
     }
 });
+
 
 
