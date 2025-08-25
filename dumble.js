@@ -52,7 +52,6 @@ console.log(`
  | |__| | |_| | | | | | | |_) | |  __/  \\ V // /_ _ ___) |
  |_____/ \\__,_|_| |_| |_|_.__/|_|\\___|   \\_/|____(_)____/ 
                                                           
-By bunsybuns123 #2EASY #RASVATONMAITO
 🟡 Note: Please wait for tool to inject when website loads up.
 `);
 
@@ -80,7 +79,7 @@ rl.question('Enter the exam website URL: ', async (url) => {
         else log('Console:', text);
     });
 
-    startSpinner('Injecting stealth bypass');
+    startSpinner('bypassing');
     await page.evaluateOnNewDocument(() => {
         Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
         Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en'] });
@@ -163,7 +162,7 @@ rl.question('Enter the exam website URL: ', async (url) => {
 
         console.log('🟢 Bypass completed successfully');
     });
-    stopSpinner('Spoofer, ChatGPT and bypasses injected');
+    stopSpinner('injection succesful');
 
     async function injectChatGPT() {
         await page.waitForSelector('body', { timeout: 10000 });
@@ -262,8 +261,9 @@ rl.question('Enter the exam website URL: ', async (url) => {
             log('No text input found.');
         }
 
-        console.log('Dumble v2.5 | 🟢 Tool 100% Successfully Injected, Ctrl + C to Quit');
+        console.log('Dumble v2.5 | 🟢 running , Ctrl + C to quit');
     } catch (err) {
         console.error('Dumble v2.5 | ❌ Error during injection:', err);
     }
 });
+
