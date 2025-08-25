@@ -58,7 +58,7 @@ console.log(`
 rl.question('Enter the exam website URL: ', async (url) => {
     rl.close();
 
-    startSpinner('Launching browser');
+    startSpinner('launching browser');
     const browser = await puppeteer.launch({
         headless: false,
         args: [
@@ -69,7 +69,7 @@ rl.question('Enter the exam website URL: ', async (url) => {
         ],
         defaultViewport: null
     });
-    stopSpinner('Browser launched');
+    stopSpinner('browser launched');
 
     const [page] = await browser.pages();
 
@@ -238,10 +238,10 @@ rl.question('Enter the exam website URL: ', async (url) => {
     try {
         startSpinner(`Navigating to ${url}`);
         await page.goto(url, { waitUntil: 'networkidle2' });
-        stopSpinner('Page loaded');
+        stopSpinner('page loaded');
 
         await injectChatGPT();
-        await simulateProgress('Simulating mouse', 1000);
+        await simulateProgress('simulating mouse', 1000);
 
         const viewport = page.viewport() || { width: 800, height: 600 };
         const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -261,9 +261,10 @@ rl.question('Enter the exam website URL: ', async (url) => {
             log('No text input found.');
         }
 
-        console.log('Dumble v2.5 | 🟢 running , Ctrl + C to quit');
+        console.log('Dumble v2.5 | running , Ctrl + C to quit');
     } catch (err) {
-        console.error('Dumble v2.5 | ❌ Error during injection:', err);
+        console.error('Dumble v2.5 | error during injection:', err);
     }
 });
+
 
