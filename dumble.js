@@ -162,7 +162,7 @@ rl.question('Enter the exam website URL: ', async (url) => {
 
         console.log('🟢 Bypass completed successfully');
     });
-    stopSpinner('injection succesful');
+    stopSpinner('injection successful');
 
     async function injectChatGPT() {
         await page.waitForSelector('body', { timeout: 10000 });
@@ -266,6 +266,7 @@ rl.question('Enter the exam website URL: ', async (url) => {
         console.error('Dumble v2.5 | error during injection:', err);
     }
 });
+
 
 
 
