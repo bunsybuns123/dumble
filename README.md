@@ -35,7 +35,7 @@ node dumble [args]
 
 
 **Arguments:**
-        --verbose    Verbose output, detailed logs
+        --verbose    Verbose output
 </pre>
 
 
@@ -44,6 +44,7 @@ node dumble [args]
 ## Disclaimer
 
 This tool is for **educational and testing purposes only.**
+
 
 
 
