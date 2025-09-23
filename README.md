@@ -11,7 +11,7 @@ Desktop PCs or Laptops running **Windows 10 or newer** are supported.
 
 - [Node.js (v16 or later recommended)](https://nodejs.org/en/download)
 
-- [Git (optional, for cloning the repo)](https://git-scm.com/downloads)
+- [Git (for cloning the repo)](https://git-scm.com/downloads)
 
 
 ## Installation (cmd)
@@ -44,6 +44,7 @@ node dumble [args]
 ## Disclaimer
 
 This tool is for **educational and testing purposes only.**
+
 
 
 
