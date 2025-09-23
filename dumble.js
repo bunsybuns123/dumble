@@ -162,7 +162,7 @@ rl.question('Enter the exam website URL: ', async (url) => {
 
         console.log('🟢 Bypass completed successfully');
     });
-    stopSpinner('injection successful');
+    stopSpinner('Injection successful');
 
     async function injectChatGPT() {
         await page.waitForSelector('body', { timeout: 10000 });
@@ -238,10 +238,10 @@ rl.question('Enter the exam website URL: ', async (url) => {
     try {
         startSpinner(`Navigating to ${url}`);
         await page.goto(url, { waitUntil: 'networkidle2' });
-        stopSpinner('page loaded');
+        stopSpinner('Page loaded');
 
         await injectChatGPT();
-        await simulateProgress('✅ simulating mouse', 1000);
+        await simulateProgress('✅ Simulating mouse', 1000);
 
         const viewport = page.viewport() || { width: 800, height: 600 };
         const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -266,6 +266,7 @@ rl.question('Enter the exam website URL: ', async (url) => {
         console.error('Dumble v2.5 | error during injection:', err);
     }
 });
+
 
 
 
