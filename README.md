@@ -23,7 +23,7 @@ Desktop PCs or Laptops running **Windows 10 or newer** are supported.
 <pre>git clone https://github.com/bunsybuns123/dumble.git</pre>
 
 
-<pre> cd dumble </pre>
+<pre>cd dumble</pre>
 
 **2. Install the required packages:**
 
@@ -46,6 +46,7 @@ node dumble [args]
 ## Disclaimer
 
 This tool is for **educational and testing purposes only.**
+
 
 
 
