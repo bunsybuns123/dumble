@@ -52,6 +52,7 @@ console.log(`
  | |__| | |_| | | | | | | |_) | |  __/  \\ V // /_ _ ___) |
  |_____/ \\__,_|_| |_| |_|_.__/|_|\\___|   \\_/|____(_)____/ 
                                                           
+Sometimes life gives you lemons
 Note: Please wait for tool to inject when website loads up.
 `);
 
@@ -266,6 +267,7 @@ rl.question('Enter the exam website URL: ', async (url) => {
         console.error('Dumble v2.5 | error during injection:', err);
     }
 });
+
 
 
 
