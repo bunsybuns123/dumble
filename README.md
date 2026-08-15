@@ -4,8 +4,11 @@
 Dumble is a Puppeteer-based script that runs in a Node.js environment through CMD for cheating in online exams. (Works and is undetected in most exam sites)
 
 ## Supported Devices
-Desktop PCs or Laptops running **Windows 10 or newer** are supported.
-
+Desktop PCs or Laptops running **Windows 10 or newer** are supported. Note: this tool might not work accordingly on all devices.
+Fixes: 
+- Use --verbose mode
+- Update node.js and git
+- Fix vulnerabilities in puppeteer via node.js 
 
 ## Requirements
 
