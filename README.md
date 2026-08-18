@@ -16,6 +16,8 @@ Fixes:
 
 - [Git](https://git-scm.com/downloads)
 
+- Administrator privileges for the machine you prefer installing this tool to
+
 
 ## Installation (cmd)
 
