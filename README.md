@@ -43,6 +43,7 @@ node dumble [args]
         --verbose    Verbose output
 </pre>
 
+<img width="1498" height="777" alt="image" src="https://github.com/user-attachments/assets/ab5804e5-7a40-4241-90fe-954faa704460" />
 
 
 
