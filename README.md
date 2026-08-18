@@ -1,7 +1,7 @@
 # Dumble (v2.5)
 
 ## Introduction
-Dumble is a Puppeteer-based script that runs in a Node.js environment through CMD for cheating in online exams. (Works and is undetected in most exam sites, f. ex. exam.net)
+Dumble is a Puppeteer-based script that runs in a Node.js environment through CMD for only for testing purposes and your privately owned exam suite's security testing.
 
 ## Supported Devices
 Desktop PCs or Laptops running **Windows 10 or newer** are supported. Note: this tool might not work accordingly on all devices.
